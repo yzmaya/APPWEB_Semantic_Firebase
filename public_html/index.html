@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Equidad e Inclusión</title>
+        <meta charset="utf-8">
+        
+        <!-- Latest compiled and minified CSS
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        -->
+        <!-- Optional theme 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+        <link rel="stylesheet" type="text/css" href="css/semantic.min.css">
+        <link rel="stylesheet" type="text/css" href="css/icon.css">
+        <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+        <script type="text/javascript" src="js/semantic.min.js"></script>
+        <script type="text/javascript" src="js/jquery.base64.js"></script>
+
+        <style type="text/css">
+            .pad{
+                margin-top: 30px;
+
+                input::-webkit-input-placeholder {
+                color: red;
+            }
+            input:-moz-placeholder {
+                color: red; 
+            }
+            input:-ms-input-placeholder { 
+                color: red; 
+            }
+            }
+
+
+        </style>
+
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                (function ($) {
+
+                    $('#filtrar').keyup(function () {
+
+                        var rex = new RegExp($(this).val(), 'i');
+                  
+                        $('.buscar tr').hide();
+                        $('.buscar tr').filter(function () {
+                            return rex.test($(this).text());
+                          
+                        }).show();
+   
+                    });
+
+                }(jQuery));
+             
+
+            });
+            
+             function exportaExcel(e){
+               window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#datos').html()));
+                e.preventDefault();
+                
+            }
+        </script>
+
+    </head>
+    <body>
+        <h1 class="ui dividing header centered" style="color: #C91842;" >Personas Registradas</h1>
+
+        <div class="ui search ">
+
+            <div class="ui icon input centered">
+                <input class="prompt"  type="text" id="filtrar" placeholder="Buscar">
+                <!-- <i class="search icon"></i>-->
+            </div>
+            <button id="exporta" name="exporta" onclick="exportaExcel()">Exportar</button>
+        </div>
+        <div id="datos">
+            <table class="ui striped table" id="tablaInfo">
+                <thead>
+                    <tr>
+                        <th>Clave</th>
+                        <th>Nombre Completo</th>
+                        <th>Correo Electrónico</th>
+                        <th>Tel&eacute;fono</th>
+                        <th>Cargo</th>
+                        <th>Tipo de Invitado</th>
+                        <th>Organización</th>
+                        <th>Discapacidad</th>
+                        <th>Apoyo</th>
+                    </tr>
+                </thead>
+                <tbody id="lista" class="buscar" >
+
+                </tbody>
+            </table>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+
+
+
+        <script src="app.js"></script>
+    </body>
+</html>
